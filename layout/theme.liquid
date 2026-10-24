@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}"{% if settings.enable_smooth_animations %} class="motion-enabled"{% endif %}>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="{{ settings.color_background }}">
+
+    <title>
+      {{ page_title | default: shop.name | escape }}
+      {%- if current_tags %} &ndash; {{ current_tags | join: ', ' | escape }}{% endif -%}
+      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+    </title>
+
+    {%- if page_description != blank -%}
+      <meta name="description" content="{{ page_description | strip_html | escape }}">
+    {%- elsif shop.description != blank -%}
+      <meta name="description" content="{{ shop.description | strip_html | escape }}">
+    {%- endif -%}
+
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    {%- liquid
+      assign body_font_bold = settings.type_body_font | font_modify: 'weight', '700'
+      assign body_font_italic = settings.type_body_font | font_modify: 'style', 'italic'
+      assign body_font_bold_italic = body_font_bold | font_modify: 'style', 'italic'
+      assign heading_font_bold = settings.type_heading_font | font_modify: 'weight', '700'
+      assign heading_font_italic = settings.type_heading_font | font_modify: 'style', 'italic'
+      assign heading_font_bold_italic = heading_font_bold | font_modify: 'style', 'italic'
+    -%}
+    <style>
+      {{ settings.type_body_font | font_face: font_display: 'swap' }}
+      {{ body_font_bold | font_face: font_display: 'swap' }}
+      {{ body_font_italic | font_face: font_display: 'swap' }}
+      {{ body_font_bold_italic | font_face: font_display: 'swap' }}
+      {{ settings.type_heading_font | font_face: font_display: 'swap' }}
+      {{ heading_font_bold | font_face: font_display: 'swap' }}
+      {{ heading_font_italic | font_face: font_display: 'swap' }}
+      {{ heading_font_bold_italic | font_face: font_display: 'swap' }}
+
+      :root {
+        --color-background: {{ settings.color_background }};
+        --color-text: {{ settings.color_text }};
+        --color-accent-primary: {{ settings.color_accent_primary }};
+        --color-accent-secondary: {{ settings.color_accent_secondary }};
+        --font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+        --font-body-style: {{ settings.type_body_font.style }};
+        --font-body-weight: {{ settings.type_body_font.weight }};
+        --font-heading-family: {{ settings.type_heading_font.family }}, {{ settings.type_heading_font.fallback_families }};
+        --font-heading-style: {{ settings.type_heading_font.style }};
+        --font-heading-weight: {{ settings.type_heading_font.weight }};
+      }
+    </style>
+
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'theme.js' | asset_url }}" defer></script>
+    {{ content_for_header }}
+  </head>
+
+  <body class="template-{{ template.name | handle }}{% if settings.enable_smooth_animations %} motion-enabled{% endif %}">
+    <a class="skip-link" href="#MainContent">
+      Skip to content
+    </a>
+
+    {% section 'header' %}
+
+    <main id="MainContent" class="main-content" role="main" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+
+    {% section 'footer' %}
+  </body>
+</html>
