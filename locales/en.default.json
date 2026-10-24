@@ -1,0 +1,15 @@
+{
+  "accessibility": {
+    "skip_to_text": "Skip to content"
+  },
+  "sections": {
+    "header": {
+      "navigation": "Main navigation",
+      "account": "Account",
+      "cart": "Cart ({{ count }} items)"
+    },
+    "footer": {
+      "search": "Search"
+    }
+  }
+}
