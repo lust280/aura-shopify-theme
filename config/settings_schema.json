@@ -1,0 +1,102 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Aura",
+    "theme_author": "Lust280",
+    "theme_version": "0.1.0",
+    "theme_documentation_url": "https://github.com/lust280/aura-shopify-theme#readme",
+    "theme_support_url": "https://github.com/lust280/aura-shopify-theme/issues"
+  },
+  {
+    "name": "Aura colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Background",
+        "default": "#F7F5F2"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Text",
+        "default": "#24221F"
+      },
+      {
+        "type": "color",
+        "id": "color_accent_primary",
+        "label": "Primary accent",
+        "default": "#7657D6"
+      },
+      {
+        "type": "color",
+        "id": "color_accent_secondary",
+        "label": "Secondary accent",
+        "default": "#D8C8F4"
+      }
+    ]
+  },
+  {
+    "name": "Aura typography",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "type_body_font",
+        "label": "Body font",
+        "default": "assistant_n4"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_heading_font",
+        "label": "Heading font",
+        "default": "assistant_n4"
+      }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "url",
+        "id": "social_instagram_link",
+        "label": "Instagram"
+      },
+      {
+        "type": "url",
+        "id": "social_facebook_link",
+        "label": "Facebook"
+      },
+      {
+        "type": "url",
+        "id": "social_tiktok_link",
+        "label": "TikTok"
+      },
+      {
+        "type": "url",
+        "id": "social_youtube_link",
+        "label": "YouTube"
+      },
+      {
+        "type": "url",
+        "id": "social_pinterest_link",
+        "label": "Pinterest"
+      },
+      {
+        "type": "url",
+        "id": "social_x_link",
+        "label": "X"
+      }
+    ]
+  },
+  {
+    "name": "Motion",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_smooth_animations",
+        "label": "Enable smooth animations",
+        "default": true
+      }
+    ]
+  }
+]
