@@ -1,0 +1,43 @@
+<header class="site-header" role="banner">
+  <div class="site-header__inner">
+    <a class="site-header__brand" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}">
+      {%- if section.settings.logo != blank -%}
+        {{ section.settings.logo | image_url: width: 280 | image_tag: class: 'site-header__logo', widths: '120, 180, 240, 280', alt: shop.name }}
+      {%- else -%}
+        <span>{{ shop.name | escape }}</span>
+      {%- endif -%}
+    </a>
+
+    {%- if section.settings.menu != blank -%}
+      <nav class="site-header__nav" aria-label="{{ 'sections.header.navigation' | t }}">
+        <ul class="site-header__nav-list">
+          {%- for link in section.settings.menu.links -%}
+            <li><a href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title | escape }}</a></li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+    {%- endif -%}
+
+    <div class="site-header__actions">
+      {%- if shop.customer_accounts_enabled -%}
+        <a class="site-header__icon-link" href="{{ routes.account_url }}" aria-label="{{ 'sections.header.account' | t }}">
+          <span aria-hidden="true">Account</span>
+        </a>
+      {%- endif -%}
+      <a class="site-header__icon-link" href="{{ routes.cart_url }}" aria-label="{{ 'sections.header.cart' | t: count: cart.item_count }}">
+        <span aria-hidden="true">Bag</span>
+        <span class="site-header__cart-count">{{ cart.item_count }}</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Aura header",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo" },
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" }
+  ]
+}
+{% endschema %}

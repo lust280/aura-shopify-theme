@@ -1,0 +1,25 @@
+<footer class="site-footer" role="contentinfo">
+  <div class="site-footer__inner">
+    <p class="site-footer__copy">© {{ 'now' | date: '%Y' }} {{ shop.name | escape }}{% if section.settings.footer_text != blank %} · {{ section.settings.footer_text | escape }}{% endif %}</p>
+    <ul class="site-footer__links">
+      {%- if section.settings.show_policy_links -%}
+        {%- for policy in shop.policies -%}
+          {%- if policy != blank -%}
+            <li><a href="{{ policy.url }}">{{ policy.title | escape }}</a></li>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+      <li><a href="{{ routes.search_url }}">{{ 'sections.footer.search' | t }}</a></li>
+    </ul>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Aura footer",
+  "settings": [
+    { "type": "text", "id": "footer_text", "label": "Optional footer note", "default": "Thoughtfully made." },
+    { "type": "checkbox", "id": "show_policy_links", "label": "Show store policies", "default": true }
+  ]
+}
+{% endschema %}
