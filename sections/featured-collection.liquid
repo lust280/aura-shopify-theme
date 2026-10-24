@@ -1,0 +1,83 @@
+{%- liquid
+  assign selected_collection = section.settings.collection
+  assign demo_count = 0
+  for block in section.blocks
+    if block.type == 'demo_product'
+      assign demo_count = demo_count | plus: 1
+    endif
+  endfor
+-%}
+
+<section class="featured-collection" aria-labelledby="FeaturedCollection-{{ section.id }}">
+  <div class="featured-collection__inner">
+    <div class="featured-collection__heading">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}<p class="featured-collection__eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        <h2 id="FeaturedCollection-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+      </div>
+      {%- if selected_collection != blank -%}<a class="featured-collection__link" href="{{ selected_collection.url }}">{{ section.settings.link_label | escape }} <span aria-hidden="true">↗</span></a>{%- endif -%}
+    </div>
+    {%- if section.settings.description != blank -%}<p class="featured-collection__description">{{ section.settings.description | escape }}</p>{%- endif -%}
+
+    <div class="product-grid{% if section.settings.mobile_slider %} product-grid--mobile-slider{% endif %}" style="--product-columns: {{ section.settings.columns_desktop }}; --product-columns-mobile: {{ section.settings.columns_mobile }};">
+      {%- if selected_collection != blank and selected_collection.products_count > 0 -%}
+        {%- for product in selected_collection.products limit: section.settings.products_to_show -%}
+          {% render 'product-card', product: product, show_vendor: section.settings.show_vendor %}
+        {%- endfor -%}
+      {%- else -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'demo_product' -%}
+            {% render 'product-card', demo_title: block.settings.title, demo_subtitle: block.settings.subtitle, demo_price: block.settings.price, demo_compare_price: block.settings.compare_price, demo_image: block.settings.image, demo_fallback: block.settings.fallback_image %}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+    {%- if selected_collection == blank and demo_count > 0 -%}<p class="featured-collection__note">Sample products for preview. Choose a collection in the theme editor to display your products.</p>{%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Aura featured collection",
+  "tag": "section",
+  "class": "aura-featured-collection-section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "THE DAILY EDIT" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Small rituals, lasting glow" },
+    { "type": "text", "id": "description", "label": "Description", "default": "A few thoughtful essentials for your everyday routine." },
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "text", "id": "link_label", "label": "Collection link label", "default": "Shop all" },
+    { "type": "range", "id": "products_to_show", "label": "Products to show", "min": 4, "max": 12, "step": 1, "default": 4 },
+    { "type": "range", "id": "columns_desktop", "label": "Desktop columns", "min": 2, "max": 4, "step": 1, "default": 4 },
+    { "type": "select", "id": "columns_mobile", "label": "Mobile columns", "options": [ { "value": "1", "label": "1" }, { "value": "2", "label": "2" } ], "default": "2" },
+    { "type": "checkbox", "id": "mobile_slider", "label": "Use a horizontal slider on mobile", "default": true },
+    { "type": "checkbox", "id": "show_vendor", "label": "Show product vendor", "default": false }
+  ],
+  "blocks": [
+    {
+      "type": "demo_product",
+      "name": "Sample product",
+      "limit": 4,
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Product image" },
+        { "type": "text", "id": "fallback_image", "label": "Preview image asset", "default": "demo-serum.jpg" },
+        { "type": "text", "id": "subtitle", "label": "Short label", "default": "AURA SKINCARE" },
+        { "type": "text", "id": "title", "label": "Product name", "default": "Sample serum" },
+        { "type": "number", "id": "price", "label": "Price in cents", "default": 3200 },
+        { "type": "number", "id": "compare_price", "label": "Compare-at price in cents", "default": 0 }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Aura featured collection",
+      "blocks": [
+        { "type": "demo_product", "settings": { "title": "Dew Drop Serum", "subtitle": "DAILY HYDRATION", "fallback_image": "demo-serum.jpg", "price": 3200 } },
+        { "type": "demo_product", "settings": { "title": "Quiet Glow Oil", "subtitle": "NOURISHING FACE OIL", "fallback_image": "demo-skincare.jpg", "price": 3800 } },
+        { "type": "demo_product", "settings": { "title": "Soft Focus Cream", "subtitle": "BARRIER COMFORT", "fallback_image": "demo-cosmetics.jpg", "price": 4200 } },
+        { "type": "demo_product", "settings": { "title": "Evening Mist", "subtitle": "CALMING ESSENCE", "fallback_image": "demo-perfume.jpg", "price": 2600 } }
+      ]
+    }
+  ]
+}
+{% endschema %}

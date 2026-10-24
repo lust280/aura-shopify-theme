@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f5f2">
+  <meta name="description" content="Aura Shopify theme visual preview with sample products.">
+  <title>Aura — Theme preview</title>
+  <link rel="stylesheet" href="../assets/theme.css">
+  <style>
+    :root { --color-background: #f7f5f2; --color-text: #24221f; --color-accent-primary: #a06750; --color-accent-secondary: #eadbd1; --font-heading-family: Georgia, 'Times New Roman', serif; --font-body-family: Arial, sans-serif; --font-heading-weight: 400; --font-body-weight: 400; }
+    .preview-note { padding: 9px 20px; background: #24221f; color: #fff; text-align: center; font-size: .76rem; letter-spacing: .04em; }
+    .hero--preview { min-height: min(690px, 73svh); background: #d8c8ba url('../assets/demo-cosmetics.jpg') center 47% / cover no-repeat; color: #fff; }
+    .hero--preview::before { position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg, rgb(24 21 19 / 56%), rgb(24 21 19 / 8%) 90%); content: ''; }
+    .hero--preview .hero__title { max-width: 760px; }
+    .hero--preview .hero__text { max-width: 480px; }
+    .preview-product-image { width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.2,.7,.2,1); }
+    .product-card:hover .preview-product-image { transform: scale(1.035); }
+    .preview-demo-label { width: fit-content; margin: 30px auto 0; padding: 9px 13px; border: 1px solid rgb(36 34 31 / 16%); border-radius: 999px; color: rgb(36 34 31 / 66%); font-size: .75rem; text-align: center; }
+    @media(max-width:749px) { .hero--preview { min-height: 620px; background-position: 58% center; } }
+  </style>
+</head>
+<body>
+  <p class="preview-note">DESIGN PREVIEW · SAMPLE PRODUCTS AND PRICES · NOT A LIVE STORE</p>
+  <header class="site-header" role="banner">
+    <div class="site-header__inner">
+      <a class="site-header__brand" href="#top" aria-label="Aura home"><span>Aura</span></a>
+      <nav class="site-header__nav" aria-label="Main navigation"><ul class="site-header__nav-list"><li><a href="#shop">Shop</a></li><li><a href="#story">Our story</a></li><li><a href="#journal">Journal</a></li></ul></nav>
+      <div class="site-header__actions"><a class="site-header__icon-link" href="#shop" aria-label="Search">Search</a><a class="site-header__icon-link" href="#shop" aria-label="Shopping bag">Bag (0)</a></div>
+    </div>
+  </header>
+  <main id="top" class="main-content">
+    <section class="hero hero--preview" aria-labelledby="hero-title">
+      <div class="hero__content hero__content--left">
+        <p class="hero__eyebrow">SKINCARE, SLOWED DOWN</p>
+        <h1 class="hero__title" id="hero-title">A softer kind of everyday.</h1>
+        <p class="hero__text">Simple formulas. Thoughtful rituals. A little more room to feel like yourself.</p>
+        <div class="hero__buttons"><a class="button" href="#shop">Discover the collection</a></div>
+      </div>
+    </section>
+    <section class="featured-collection" id="shop" aria-labelledby="collection-title">
+      <div class="featured-collection__inner">
+        <div class="featured-collection__heading"><div><p class="featured-collection__eyebrow">THE DAILY EDIT</p><h2 id="collection-title">Small rituals, lasting glow</h2></div><a class="featured-collection__link" href="#products">Shop all <span aria-hidden="true">↗</span></a></div>
+        <p class="featured-collection__description">A few thoughtful essentials for your everyday routine.</p>
+        <div class="product-grid" id="products" style="--product-columns: 4; --product-columns-mobile: 2;">
+          <article class="product-card"><div class="product-card__media"><img class="preview-product-image" src="../assets/demo-serum.jpg" alt="Amber glass skincare dropper bottle" loading="lazy" width="1000" height="1250"><span class="product-card__badge">Sample</span></div><div class="product-card__details"><p class="product-card__subtitle">DAILY HYDRATION</p><h3 class="product-card__title">Dew Drop Serum</h3><div class="product-card__price"><span>€32.00</span></div></div></article>
+          <article class="product-card"><div class="product-card__media"><img class="preview-product-image" src="../assets/demo-skincare.jpg" alt="Minimal white skincare dropper bottle" loading="lazy" width="1000" height="1250"><span class="product-card__badge">Sample</span></div><div class="product-card__details"><p class="product-card__subtitle">NOURISHING FACE OIL</p><h3 class="product-card__title">Quiet Glow Oil</h3><div class="product-card__price"><span>€38.00</span></div></div></article>
+          <article class="product-card"><div class="product-card__media"><img class="preview-product-image" src="../assets/demo-cosmetics.jpg" alt="Unbranded skincare cream jar beside a plant" loading="lazy" width="1000" height="1250"><span class="product-card__badge">Sample</span></div><div class="product-card__details"><p class="product-card__subtitle">BARRIER COMFORT</p><h3 class="product-card__title">Soft Focus Cream</h3><div class="product-card__price"><span>€42.00</span></div></div></article>
+          <article class="product-card"><div class="product-card__media"><img class="preview-product-image" src="../assets/demo-perfume.jpg" alt="Clear glass dropper bottle" loading="lazy" width="1000" height="1250"><span class="product-card__badge">Sample</span></div><div class="product-card__details"><p class="product-card__subtitle">CALMING ESSENCE</p><h3 class="product-card__title">Evening Mist</h3><div class="product-card__price"><span>€26.00</span></div></div></article>
+        </div>
+        <p class="preview-demo-label">These fictional product names and prices are only visual placeholders.</p>
+      </div>
+    </section>
+    <section class="featured-collection" id="story" style="padding-top:0"><div class="featured-collection__inner" style="max-width:760px;text-align:center"><p class="featured-collection__eyebrow">A NOTE FROM AURA</p><h2 style="font-family:var(--font-heading-family);font-size:clamp(2.2rem,5vw,4rem);font-weight:400;letter-spacing:-.04em">Care that feels like coming home.</h2><p class="featured-collection__description" style="margin-inline:auto">A calm, considered storefront designed to put your products and their story first.</p></div></section>
+  </main>
+  <footer class="site-footer" role="contentinfo"><div class="site-footer__inner"><p class="site-footer__copy">© 2026 Aura · A theme concept preview</p><ul class="site-footer__links"><li><a href="#story">About</a></li><li><a href="#journal">Journal</a></li><li><a href="#top">Contact</a></li></ul></div></footer>
+</body>
+</html>

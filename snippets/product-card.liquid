@@ -1,0 +1,48 @@
+{%- liquid
+  assign is_demo = false
+  if product == blank
+    assign is_demo = true
+  endif
+-%}
+
+<article class="product-card{% if is_demo %} product-card--demo{% endif %}">
+  <div class="product-card__media">
+    {%- if is_demo -%}
+      {%- if demo_image != blank -%}
+        {{ demo_image | image_url: width: 1000 | image_tag: widths: '360, 540, 720, 900, 1000', sizes: '(min-width: 1000px) 25vw, (min-width: 750px) 33vw, 50vw', loading: 'lazy', alt: demo_title }}
+      {%- elsif demo_fallback != blank -%}
+        <img src="{{ demo_fallback | asset_url }}" alt="{{ demo_title | escape }}" width="1000" height="1250" loading="lazy">
+      {%- endif -%}
+      <span class="product-card__badge">Sample</span>
+    {%- else -%}
+      {%- if product.featured_image != blank -%}
+        {{ product.featured_image | image_url: width: 1000 | image_tag: class: 'product-card__image product-card__image--primary', widths: '360, 540, 720, 900, 1000', sizes: '(min-width: 1000px) 25vw, (min-width: 750px) 33vw, 50vw', loading: 'lazy', alt: product.featured_image.alt | default: product.title }}
+      {%- endif -%}
+      {%- if product.images.size > 1 -%}
+        {{ product.images[1] | image_url: width: 1000 | image_tag: class: 'product-card__image product-card__image--secondary', widths: '360, 540, 720, 900, 1000', sizes: '(min-width: 1000px) 25vw, (min-width: 750px) 33vw, 50vw', loading: 'lazy', alt: product.images[1].alt | default: product.title }}
+      {%- endif -%}
+      {%- if product.compare_at_price > product.price -%}<span class="product-card__badge">Sale</span>{%- elsif product.tags contains 'new' -%}<span class="product-card__badge">New</span>{%- endif -%}
+      {%- if product.available -%}
+        {%- form 'product', product, class: 'product-card__quick-add' -%}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          <button class="product-card__quick-button" type="submit" aria-label="Add {{ product.title | escape }} to cart">Quick add</button>
+        {%- endform -%}
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+
+  <div class="product-card__details">
+    {%- if is_demo -%}
+      {%- if demo_subtitle != blank -%}<p class="product-card__subtitle">{{ demo_subtitle | escape }}</p>{%- endif -%}
+      <h3 class="product-card__title">{{ demo_title | escape }}</h3>
+      <div class="product-card__price"><span>{{ demo_price | money }}</span>{%- if demo_compare_price > demo_price -%}<s>{{ demo_compare_price | money }}</s>{%- endif -%}</div>
+    {%- else -%}
+      {%- if product.vendor != blank and show_vendor -%}<p class="product-card__subtitle">{{ product.vendor | escape }}</p>{%- endif -%}
+      <h3 class="product-card__title"><a href="{{ product.url }}">{{ product.title | escape }}</a></h3>
+      <div class="product-card__price">
+        <span>{{ product.price | money }}</span>
+        {%- if product.compare_at_price > product.price -%}<s>{{ product.compare_at_price | money }}</s>{%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</article>
