@@ -9,7 +9,25 @@
   <link rel="stylesheet" href="../assets/theme.css">
   <style>
     :root { --color-background: #f7f5f2; --color-text: #24221f; --color-accent-primary: #a06750; --color-accent-secondary: #eadbd1; --font-heading-family: Georgia, 'Times New Roman', serif; --font-body-family: Arial, sans-serif; --font-heading-weight: 400; --font-body-weight: 400; }
-    .preview-note { padding: 9px 20px; background: #24221f; color: #fff; text-align: center; font-size: .76rem; letter-spacing: .04em; }
+    .preview-note { padding: 6px 20px; background: #24221f; color: #fff; text-align: center; font-size: .68rem; letter-spacing: .04em; }
+    .site-header__inner { min-height: 58px; }
+    .site-header__brand { font-size: 1.18rem; }
+    .preview-cart-count { font-size: .68rem; }
+    .preview-toast { position: fixed; z-index: 20; right: 20px; bottom: 20px; max-width: min(360px, calc(100vw - 40px)); padding: 14px 18px; background: #24221f; color: white; box-shadow: 0 8px 32px rgb(0 0 0 / 18%); opacity: 0; pointer-events: none; transform: translateY(12px); transition: .2s ease; }
+    .preview-toast.is-visible { opacity: 1; transform: none; }
+    .preview-product { width: min(100% - 40px, 1200px); margin: 56px auto; display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(32px, 7vw, 96px); align-items: center; }
+    .preview-product__image { width: 100%; max-height: 75vh; aspect-ratio: 4 / 5; object-fit: cover; background: #eee9e1; }
+    .preview-product__details h1 { margin: 0; font: 400 clamp(2.3rem, 5vw, 4.5rem)/1 var(--font-heading-family); letter-spacing: -.045em; }
+    .preview-product__price { margin: 20px 0; font-size: 1.1rem; }
+    .preview-product__details p { line-height: 1.7; }
+    .preview-product__details .button { margin-top: 14px; cursor: pointer; }
+    .preview-back { display: inline-flex; margin: 24px 20px 0; text-decoration: none; }
+    .preview-cart { width: min(100% - 40px, 800px); margin: 56px auto; }
+    .preview-cart h1 { font: 400 clamp(2.5rem, 5vw, 4.5rem)/1 var(--font-heading-family); }
+    .preview-cart-row { display: flex; align-items: center; gap: 20px; padding: 18px 0; border-bottom: 1px solid rgb(36 34 31 / 12%); }
+    .preview-cart-row img { width: 84px; height: 104px; object-fit: cover; }
+    .preview-cart-row button { padding: 7px 12px; border: 1px solid currentColor; background: transparent; cursor: pointer; }
+    @media(max-width:749px) { .preview-product { width: calc(100% - 32px); margin: 24px auto; grid-template-columns: 1fr; gap: 22px; } .preview-product__image { max-height: none; } .preview-cart { width: calc(100% - 32px); margin: 32px auto; } .preview-note { font-size: .6rem; } }
     .hero--preview { min-height: min(690px, 73svh); background: #d8c8ba url('../assets/demo-cosmetics.jpg') center 47% / cover no-repeat; color: #fff; }
     .hero--preview::before { position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg, rgb(24 21 19 / 56%), rgb(24 21 19 / 8%) 90%); content: ''; }
     .hero--preview .hero__title { max-width: 760px; }
@@ -26,7 +44,7 @@
     <div class="site-header__inner">
       <a class="site-header__brand" href="#top" aria-label="Aura home"><span>Aura</span></a>
       <nav class="site-header__nav" aria-label="Main navigation"><ul class="site-header__nav-list"><li><a href="#shop">Shop</a></li><li><a href="#story">Our story</a></li><li><a href="#journal">Journal</a></li></ul></nav>
-      <div class="site-header__actions"><a class="site-header__icon-link" href="#shop" aria-label="Search">Search</a><a class="site-header__icon-link" href="#shop" aria-label="Shopping bag">Bag (0)</a></div>
+      <div class="site-header__actions"><a class="site-header__icon-link" href="#shop" aria-label="Search" title="Search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.5"></circle><path d="m16 16 4 4"></path></svg></a><a class="site-header__icon-link" href="#cart" aria-label="Shopping bag" title="Shopping bag"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l1 12H4L5 8Z"></path><path d="M9 9V6a3 3 0 0 1 6 0v3"></path></svg><span class="site-header__cart-count preview-cart-count" aria-hidden="true">0</span></a></div>
     </div>
   </header>
   <main id="top" class="main-content">
@@ -43,16 +61,18 @@
         <div class="featured-collection__heading"><div><p class="featured-collection__eyebrow">THE DAILY EDIT</p><h2 id="collection-title">Small rituals, lasting glow</h2></div><a class="featured-collection__link" href="#products">Shop all <span aria-hidden="true">↗</span></a></div>
         <p class="featured-collection__description">A few thoughtful essentials for your everyday routine.</p>
         <div class="product-grid" id="products" style="--product-columns: 4; --product-columns-mobile: 2;">
-          <article class="product-card"><div class="product-card__media"><img class="preview-product-image" src="../assets/demo-serum.jpg" alt="Amber glass skincare dropper bottle" loading="lazy" width="1000" height="1250"><span class="product-card__badge">Sample</span></div><div class="product-card__details"><p class="product-card__subtitle">DAILY HYDRATION</p><h3 class="product-card__title">Dew Drop Serum</h3><div class="product-card__price"><span>€32.00</span></div></div></article>
-          <article class="product-card"><div class="product-card__media"><img class="preview-product-image" src="../assets/demo-skincare.jpg" alt="Minimal white skincare dropper bottle" loading="lazy" width="1000" height="1250"><span class="product-card__badge">Sample</span></div><div class="product-card__details"><p class="product-card__subtitle">NOURISHING FACE OIL</p><h3 class="product-card__title">Quiet Glow Oil</h3><div class="product-card__price"><span>€38.00</span></div></div></article>
-          <article class="product-card"><div class="product-card__media"><img class="preview-product-image" src="../assets/demo-cosmetics.jpg" alt="Unbranded skincare cream jar beside a plant" loading="lazy" width="1000" height="1250"><span class="product-card__badge">Sample</span></div><div class="product-card__details"><p class="product-card__subtitle">BARRIER COMFORT</p><h3 class="product-card__title">Soft Focus Cream</h3><div class="product-card__price"><span>€42.00</span></div></div></article>
-          <article class="product-card"><div class="product-card__media"><img class="preview-product-image" src="../assets/demo-perfume.jpg" alt="Clear glass dropper bottle" loading="lazy" width="1000" height="1250"><span class="product-card__badge">Sample</span></div><div class="product-card__details"><p class="product-card__subtitle">CALMING ESSENCE</p><h3 class="product-card__title">Evening Mist</h3><div class="product-card__price"><span>€26.00</span></div></div></article>
+          <article class="product-card" data-product="serum"><a class="product-card__link" href="#product-serum" aria-label="View Dew Drop Serum"><div class="product-card__media"><img class="preview-product-image" src="../assets/demo-serum.jpg" alt="Amber glass skincare dropper bottle" loading="lazy" width="1000" height="1250"><span class="product-card__badge">Sample</span></div><div class="product-card__details"><p class="product-card__subtitle">DAILY HYDRATION</p><h3 class="product-card__title">Dew Drop Serum</h3><div class="product-card__price"><span>€32.00</span></div></div></a></article>
+          <article class="product-card" data-product="oil"><a class="product-card__link" href="#product-oil" aria-label="View Quiet Glow Oil"><div class="product-card__media"><img class="preview-product-image" src="../assets/demo-skincare.jpg" alt="Minimal white skincare dropper bottle" loading="lazy" width="1000" height="1250"><span class="product-card__badge">Sample</span></div><div class="product-card__details"><p class="product-card__subtitle">NOURISHING FACE OIL</p><h3 class="product-card__title">Quiet Glow Oil</h3><div class="product-card__price"><span>€38.00</span></div></div></a></article>
+          <article class="product-card" data-product="cream"><a class="product-card__link" href="#product-cream" aria-label="View Soft Focus Cream"><div class="product-card__media"><img class="preview-product-image" src="../assets/demo-cosmetics.jpg" alt="Unbranded skincare cream jar beside a plant" loading="lazy" width="1000" height="1250"><span class="product-card__badge">Sample</span></div><div class="product-card__details"><p class="product-card__subtitle">BARRIER COMFORT</p><h3 class="product-card__title">Soft Focus Cream</h3><div class="product-card__price"><span>€42.00</span></div></div></a></article>
+          <article class="product-card" data-product="mist"><a class="product-card__link" href="#product-mist" aria-label="View Evening Mist"><div class="product-card__media"><img class="preview-product-image" src="../assets/demo-perfume.jpg" alt="Clear glass dropper bottle" loading="lazy" width="1000" height="1250"><span class="product-card__badge">Sample</span></div><div class="product-card__details"><p class="product-card__subtitle">CALMING ESSENCE</p><h3 class="product-card__title">Evening Mist</h3><div class="product-card__price"><span>€26.00</span></div></div></a></article>
         </div>
         <p class="preview-demo-label">These fictional product names and prices are only visual placeholders.</p>
       </div>
     </section>
     <section class="featured-collection" id="story" style="padding-top:0"><div class="featured-collection__inner" style="max-width:760px;text-align:center"><p class="featured-collection__eyebrow">A NOTE FROM AURA</p><h2 style="font-family:var(--font-heading-family);font-size:clamp(2.2rem,5vw,4rem);font-weight:400;letter-spacing:-.04em">Care that feels like coming home.</h2><p class="featured-collection__description" style="margin-inline:auto">A calm, considered storefront designed to put your products and their story first.</p></div></section>
   </main>
+  <div class="preview-toast" role="status" aria-live="polite"></div>
   <footer class="site-footer" role="contentinfo"><div class="site-footer__inner"><p class="site-footer__copy">© 2026 Aura · A theme concept preview</p><ul class="site-footer__links"><li><a href="#story">About</a></li><li><a href="#journal">Journal</a></li><li><a href="#top">Contact</a></li></ul></div></footer>
+  <script src="preview.js" defer></script>
 </body>
 </html>

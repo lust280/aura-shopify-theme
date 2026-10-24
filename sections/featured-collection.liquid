@@ -27,7 +27,7 @@
       {%- else -%}
         {%- for block in section.blocks -%}
           {%- if block.type == 'demo_product' -%}
-            {% render 'product-card', demo_title: block.settings.title, demo_subtitle: block.settings.subtitle, demo_price: block.settings.price, demo_compare_price: block.settings.compare_price, demo_image: block.settings.image, demo_fallback: block.settings.fallback_image %}
+            {% render 'product-card', demo_title: block.settings.title, demo_subtitle: block.settings.subtitle, demo_price: block.settings.price, demo_compare_price: block.settings.compare_price, demo_image: block.settings.image, demo_fallback: block.settings.fallback_image, demo_url: block.settings.link %}
           {%- endif -%}
         {%- endfor -%}
       {%- endif -%}
@@ -63,6 +63,7 @@
         { "type": "text", "id": "fallback_image", "label": "Preview image asset", "default": "demo-serum.jpg" },
         { "type": "text", "id": "subtitle", "label": "Short label", "default": "AURA SKINCARE" },
         { "type": "text", "id": "title", "label": "Product name", "default": "Sample serum" },
+        { "type": "url", "id": "link", "label": "Product page link (optional)" },
         { "type": "number", "id": "price", "label": "Price in cents", "default": 3200 },
         { "type": "number", "id": "compare_price", "label": "Compare-at price in cents", "default": 0 }
       ]
@@ -72,10 +73,10 @@
     {
       "name": "Aura featured collection",
       "blocks": [
-        { "type": "demo_product", "settings": { "title": "Dew Drop Serum", "subtitle": "DAILY HYDRATION", "fallback_image": "demo-serum.jpg", "price": 3200 } },
-        { "type": "demo_product", "settings": { "title": "Quiet Glow Oil", "subtitle": "NOURISHING FACE OIL", "fallback_image": "demo-skincare.jpg", "price": 3800 } },
-        { "type": "demo_product", "settings": { "title": "Soft Focus Cream", "subtitle": "BARRIER COMFORT", "fallback_image": "demo-cosmetics.jpg", "price": 4200 } },
-        { "type": "demo_product", "settings": { "title": "Evening Mist", "subtitle": "CALMING ESSENCE", "fallback_image": "demo-perfume.jpg", "price": 2600 } }
+        { "type": "demo_product", "settings": { "title": "Dew Drop Serum", "subtitle": "DAILY HYDRATION", "fallback_image": "demo-serum.jpg", "link": "/pages/product-preview", "price": 3200 } },
+        { "type": "demo_product", "settings": { "title": "Quiet Glow Oil", "subtitle": "NOURISHING FACE OIL", "fallback_image": "demo-skincare.jpg", "link": "/pages/product-preview", "price": 3800 } },
+        { "type": "demo_product", "settings": { "title": "Soft Focus Cream", "subtitle": "BARRIER COMFORT", "fallback_image": "demo-cosmetics.jpg", "link": "/pages/product-preview", "price": 4200 } },
+        { "type": "demo_product", "settings": { "title": "Evening Mist", "subtitle": "CALMING ESSENCE", "fallback_image": "demo-perfume.jpg", "link": "/pages/product-preview", "price": 2600 } }
       ]
     }
   ]

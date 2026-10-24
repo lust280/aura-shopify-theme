@@ -14,10 +14,10 @@
     "featured": {
       "type": "featured-collection",
       "blocks": {
-        "sample_serum": { "type": "demo_product", "settings": { "title": "Dew Drop Serum", "subtitle": "DAILY HYDRATION", "fallback_image": "demo-serum.jpg", "price": 3200, "compare_price": 0 } },
-        "sample_oil": { "type": "demo_product", "settings": { "title": "Quiet Glow Oil", "subtitle": "NOURISHING FACE OIL", "fallback_image": "demo-skincare.jpg", "price": 3800, "compare_price": 0 } },
-        "sample_cream": { "type": "demo_product", "settings": { "title": "Soft Focus Cream", "subtitle": "BARRIER COMFORT", "fallback_image": "demo-cosmetics.jpg", "price": 4200, "compare_price": 0 } },
-        "sample_essence": { "type": "demo_product", "settings": { "title": "Evening Mist", "subtitle": "CALMING ESSENCE", "fallback_image": "demo-perfume.jpg", "price": 2600, "compare_price": 0 } }
+        "sample_serum": { "type": "demo_product", "settings": { "title": "Dew Drop Serum", "subtitle": "DAILY HYDRATION", "fallback_image": "demo-serum.jpg", "link": "/pages/product-preview", "price": 3200, "compare_price": 0 } },
+        "sample_oil": { "type": "demo_product", "settings": { "title": "Quiet Glow Oil", "subtitle": "NOURISHING FACE OIL", "fallback_image": "demo-skincare.jpg", "link": "/pages/product-preview", "price": 3800, "compare_price": 0 } },
+        "sample_cream": { "type": "demo_product", "settings": { "title": "Soft Focus Cream", "subtitle": "BARRIER COMFORT", "fallback_image": "demo-cosmetics.jpg", "link": "/pages/product-preview", "price": 4200, "compare_price": 0 } },
+        "sample_essence": { "type": "demo_product", "settings": { "title": "Evening Mist", "subtitle": "CALMING ESSENCE", "fallback_image": "demo-perfume.jpg", "link": "/pages/product-preview", "price": 2600, "compare_price": 0 } }
       },
       "block_order": ["sample_serum", "sample_oil", "sample_cream", "sample_essence"],
       "settings": { "eyebrow": "THE DAILY EDIT", "heading": "Small rituals, lasting glow", "description": "A few thoughtful essentials for your everyday routine.", "collection": "", "products_to_show": 4, "columns_desktop": 4, "columns_mobile": "2", "mobile_slider": true, "show_vendor": false }

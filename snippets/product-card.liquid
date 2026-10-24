@@ -6,6 +6,7 @@
 -%}
 
 <article class="product-card{% if is_demo %} product-card--demo{% endif %}">
+  {%- if is_demo -%}<a class="product-card__link" href="{{ demo_url | default: '/pages/product-preview' }}" aria-label="View {{ demo_title | escape }}">{%- endif -%}
   <div class="product-card__media">
     {%- if is_demo -%}
       {%- if demo_image != blank -%}
@@ -45,4 +46,5 @@
       </div>
     {%- endif -%}
   </div>
+  {%- if is_demo -%}</a>{%- endif -%}
 </article>

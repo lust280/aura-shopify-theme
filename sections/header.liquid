@@ -1,4 +1,4 @@
-<header class="site-header" role="banner">
+<header class="site-header{% if section.settings.sticky_header %} site-header--sticky{% endif %}" role="banner">
   <div class="site-header__inner">
     <a class="site-header__brand" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}">
       {%- if section.settings.logo != blank -%}
@@ -20,13 +20,13 @@
 
     <div class="site-header__actions">
       {%- if shop.customer_accounts_enabled -%}
-        <a class="site-header__icon-link" href="{{ routes.account_url }}" aria-label="{{ 'sections.header.account' | t }}">
-          <span aria-hidden="true">Account</span>
+        <a class="site-header__icon-link site-header__icon-link--account" href="{{ routes.account_url }}" aria-label="{{ 'sections.header.account' | t }}">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="3.5"></circle><path d="M4.5 20c.6-4 3.1-6 7.5-6s6.9 2 7.5 6"></path></svg>
         </a>
       {%- endif -%}
-      <a class="site-header__icon-link" href="{{ routes.cart_url }}" aria-label="{{ 'sections.header.cart' | t: count: cart.item_count }}">
-        <span aria-hidden="true">Bag</span>
-        <span class="site-header__cart-count">{{ cart.item_count }}</span>
+      <a class="site-header__icon-link site-header__icon-link--cart" href="{{ routes.cart_url }}" aria-label="{{ 'sections.header.cart' | t: count: cart.item_count }}">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 8h14l1 12H4L5 8Z"></path><path d="M9 9V6a3 3 0 0 1 6 0v3"></path></svg>
+        <span class="site-header__cart-count" aria-hidden="true">{{ cart.item_count }}</span>
       </a>
     </div>
   </div>
@@ -37,7 +37,8 @@
   "name": "Aura header",
   "settings": [
     { "type": "image_picker", "id": "logo", "label": "Logo" },
-    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" }
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" },
+    { "type": "checkbox", "id": "sticky_header", "label": "Stick header to top while scrolling", "default": false }
   ]
 }
 {% endschema %}
