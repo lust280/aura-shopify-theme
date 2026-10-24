@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "blocks": {
+        "eyebrow": { "type": "eyebrow", "settings": { "text": "Aura collection" } },
+        "heading": { "type": "heading", "settings": { "text": "Made to feel like you." } },
+        "text": { "type": "text", "settings": { "text": "<p>Thoughtful essentials, made for everyday rituals.</p>" } },
+        "button": { "type": "button", "settings": { "label": "Shop the collection", "link": "shopify://collections/all", "style": "primary" } }
+      },
+      "block_order": ["eyebrow", "heading", "text", "button"],
+      "settings": {}
+    }
+  },
+  "order": ["hero"]
+}
